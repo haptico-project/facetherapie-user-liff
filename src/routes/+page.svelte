@@ -1,11 +1,18 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<h1>ファセテラピー友達追加</h1>
+{#if userId}
+    <main>
+        <h1>友達追加が完了した後、この画面は閉じてください。</h1>
+        <!--        <p><strong>ユーザーID:</strong> {userId}</p>-->
+        <p><strong>店舗コード:</strong> {shopCode}</p>
+    </main>
+{/if}
 
 <script lang="ts">
-    import { onMount } from 'svelte';
+    import {onMount} from 'svelte';
 
+    const liffId = '2007233135-vxLAjokB';
     let userId = '';
-    let ref = '';
+    let shopCode = '';
 
     function getQueryParam(key: string): string | null {
         const params = new URLSearchParams(window.location.search);
@@ -14,10 +21,10 @@
 
     onMount(async () => {
 
-        ref = getQueryParam('ref') ?? 'no-ref';
+        shopCode = getQueryParam('shopCode') ?? 'no-shop-code';
 
         try {
-            await liff.init({ liffId: '2007233135-vxLAjokB', withLoginOnExternalBrowser: true });
+            await liff.init({liffId: liffId, withLoginOnExternalBrowser: true});
 
             if (!liff.isLoggedIn()) {
                 liff.login();
@@ -29,11 +36,11 @@
             if (context && context.userId) {
                 userId = context.userId;
 
-                // await fetch('https://your-api.com/link', {
-                //     method: 'POST',
-                //     headers: { 'Content-Type': 'application/json' },
-                //     body: JSON.stringify({ userId, ref })
-                // });
+                await fetch(`https://d1wuhnzyl0w5u5.cloudfront.net/api/v1/shop/link-customer?userId=${userId}&shopCode=${shopCode}`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({})
+                });
             } else {
                 console.warn('userId not available in context');
             }
@@ -43,12 +50,6 @@
     });
 
 </script>
-
-<main>
-    <h1>LIFF + Svelte (TS)</h1>
-    <p><strong>ユーザーID:</strong> {userId}</p>
-    <p><strong>参照コード:</strong> {ref}</p>
-</main>
 
 <style>
     main {
