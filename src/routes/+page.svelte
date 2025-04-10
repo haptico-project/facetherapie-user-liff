@@ -16,31 +16,26 @@
         ref = getQueryParam('ref') ?? 'no-ref';
 
         try {
-            await liff.init({ liffId: '2007233135-vxLAjokB' });
+            await liff.init({ liffId: '2007233135-vxLAjokB', withLoginOnExternalBrowser: true });
 
             if (!liff.isLoggedIn()) {
                 liff.login();
-                return; // ← ここで止めるのが大事
+                return;
             }
 
-            const idToken = liff.getDecodedIDToken();
-            if (idToken && idToken.sub) {
-                userId = idToken.sub;
-
-                console.log(idToken)
-
-                // const response = await fetch('https://your-api.com/link', {
-                //     method: 'POST',
-                //     headers: { 'Content-Type': 'application/json' },
-                //     body: JSON.stringify({ userId, ref })
-                // });
-
-                // if (!response.ok) {
-                //     console.error('API error:', await response.text());
-                // }
-            } else {
-                console.warn('idToken is missing or invalid');
-            }
+            const context = liff.getContext();
+            console.log(context)
+            // if (context && context.userId) {
+            //     userId = context.userId;
+            //
+            //     await fetch('https://your-api.com/link', {
+            //         method: 'POST',
+            //         headers: { 'Content-Type': 'application/json' },
+            //         body: JSON.stringify({ userId, ref })
+            //     });
+            // } else {
+            //     console.warn('userId not available in context');
+            // }
         } catch (err) {
             console.error('LIFF init failed', err);
         }
