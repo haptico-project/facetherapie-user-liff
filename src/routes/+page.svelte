@@ -27,6 +27,8 @@
             if (idToken && idToken.sub) {
                 userId = idToken.sub;
 
+                console.log(idToken)
+
                 // const response = await fetch('https://your-api.com/link', {
                 //     method: 'POST',
                 //     headers: { 'Content-Type': 'application/json' },
