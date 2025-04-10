@@ -13,6 +13,7 @@
     }
 
     onMount(async () => {
+
         ref = getQueryParam('ref') ?? 'no-ref';
 
         try {
@@ -25,17 +26,17 @@
 
             const context = liff.getContext();
             console.log(context)
-            // if (context && context.userId) {
-            //     userId = context.userId;
-            //
-            //     await fetch('https://your-api.com/link', {
-            //         method: 'POST',
-            //         headers: { 'Content-Type': 'application/json' },
-            //         body: JSON.stringify({ userId, ref })
-            //     });
-            // } else {
-            //     console.warn('userId not available in context');
-            // }
+            if (context && context.userId) {
+                userId = context.userId;
+
+                // await fetch('https://your-api.com/link', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify({ userId, ref })
+                // });
+            } else {
+                console.warn('userId not available in context');
+            }
         } catch (err) {
             console.error('LIFF init failed', err);
         }
