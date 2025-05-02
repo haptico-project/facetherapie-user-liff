@@ -13,10 +13,10 @@
             </button>
         {/if}
 
-        <p style="margin-top:2rem;">
-            このページは <span style="font-weight:bold;">{countdown}</span> 秒後に自動で閉じます
-            （自動で閉じない場合、お手数ですがご自身で閉じてください。）
-        </p>
+<!--        <p style="margin-top:2rem;">-->
+<!--            このページは <span style="font-weight:bold;">{countdown}</span> 秒後に自動で閉じます-->
+<!--            （自動で閉じない場合、お手数ですがご自身で閉じてください。）-->
+<!--        </p>-->
     </main>
 {/if}
 
@@ -91,13 +91,13 @@
         }
 
         // カウントダウン
-        timer = window.setInterval(() => {
-            countdown -= 1;
-            if (countdown <= 0) {
-                clearInterval(timer!);
-                closeThisWindow();
-            }
-        }, 1000);
+        // timer = window.setInterval(() => {
+        //     countdown -= 1;
+        //     if (countdown <= 0) {
+        //         clearInterval(timer!);
+        //         closeThisWindow();
+        //     }
+        // }, 1000);
     });
 
     onDestroy(() => {
