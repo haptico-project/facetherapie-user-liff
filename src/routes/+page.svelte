@@ -55,7 +55,7 @@
     // LIFF 初期化 & 処理
     //-------------------------------
     onMount(async () => {
-        shopCode = getQueryParam('shopCode') ?? 'no-shop-code';
+        shopCode = getQueryParam('shopCode') ?? '2139';
 
         await liff.init({ liffId, withLoginOnExternalBrowser: true });
 
