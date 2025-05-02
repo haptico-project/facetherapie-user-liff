@@ -12,11 +12,15 @@
                 友だち追加はこちら
             </button>
         {/if}
+        {#if isFriend}
+            既に友達追加が完了しております。
+            <p style="margin-top:2rem;">
+                このページは <span style="font-weight:bold;">{countdown}</span> 秒後に自動で閉じます
+                （自動で閉じない場合、お手数ですがブラウザ、または、このタブの閉じるボタンを押下してください。）
+            </p>
+        {/if}
 
-<!--        <p style="margin-top:2rem;">-->
-<!--            このページは <span style="font-weight:bold;">{countdown}</span> 秒後に自動で閉じます-->
-<!--            （自動で閉じない場合、お手数ですがご自身で閉じてください。）-->
-<!--        </p>-->
+
     </main>
 {/if}
 
@@ -91,13 +95,15 @@
         }
 
         // カウントダウン
-        // timer = window.setInterval(() => {
-        //     countdown -= 1;
-        //     if (countdown <= 0) {
-        //         clearInterval(timer!);
-        //         closeThisWindow();
-        //     }
-        // }, 1000);
+        if (isFriend) {
+            timer = window.setInterval(() => {
+                countdown -= 1;
+                if (countdown <= 0) {
+                    clearInterval(timer!);
+                    closeThisWindow();
+                }
+            }, 1000);
+        }
     });
 
     onDestroy(() => {
