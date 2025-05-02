@@ -13,7 +13,7 @@
             </button>
         {/if}
         {#if isFriend}
-            既に友達追加が完了しております。
+            既に友達追加が完了しています。
             <p style="margin-top:2rem;">
                 このページは <span style="font-weight:bold;">{countdown}</span> 秒後に自動で閉じます
                 （自動で閉じない場合、お手数ですがブラウザ、または、このタブの閉じるボタンを押下してください。）
