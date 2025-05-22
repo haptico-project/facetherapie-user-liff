@@ -31,7 +31,7 @@
     // 設定
     //-------------------------------
     const liffId   = '2007233135-vxLAjokB';
-    const apiBase  = 'https://d1wuhnzyl0w5u5.cloudfront.net/api/v1';
+    const apiBase  = 'https://payflow-backend.fly.dev/api/v1';
     const oaLineId = '@336xcxbk';              // ← 公式アカウントの LINE ID (@含む)
 
     //-------------------------------
